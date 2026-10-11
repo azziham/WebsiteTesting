@@ -1,0 +1,44 @@
+{
+  "version": 1,
+  "updatedAt": "2026-10-11T00:00:00.000Z",
+  "settings": {
+    "brand": "Dapur Ziham",
+    "whatsapp": "6281234567890",
+    "address": "Atur alamat gerobak di halaman admin",
+    "hours": "Setiap hari, 15.00 sampai habis",
+    "instagram": ""
+  },
+  "categories": ["Gurih", "Manis", "Minuman"],
+  "items": [
+    {
+      "id": "pastel-bolognese",
+      "name": "Pastel Bolognese",
+      "category": "Gurih",
+      "price": 5000,
+      "desc": "Kulit renyah berpilin, isinya saus bolognese daging yang tebal dan gurih.",
+      "image": "assets/menu/pastel-bolognese.svg",
+      "badge": "Favorit",
+      "available": true
+    },
+    {
+      "id": "tiramisu",
+      "name": "Tiramisu Cup",
+      "category": "Manis",
+      "price": 15000,
+      "desc": "Lapisan krim lembut dan bolu kopi, ditutup taburan cokelat. Paling enak dingin.",
+      "image": "assets/menu/tiramisu.svg",
+      "badge": "",
+      "available": true
+    },
+    {
+      "id": "pudot",
+      "name": "Pudot (Puding Sedot)",
+      "category": "Minuman",
+      "price": 8000,
+      "desc": "Potongan puding cokelat dalam susu dingin. Disedot pakai sedotan besar, kenyal di setiap sedotan.",
+      "image": "assets/menu/pudot.svg",
+      "badge": "Baru",
+      "available": true
+    }
+  ]
+}

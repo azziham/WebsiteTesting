@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" role="img" aria-label="Ilustrasi tiramisu cup">
+<ellipse cx="200" cy="352" rx="120" ry="16" fill="#2A1712" opacity=".16"/>
+<defs><clipPath id="cup"><path d="M108 120 L292 120 L270 340 L130 340 Z"/></clipPath></defs>
+<g clip-path="url(#cup)">
+<rect x="90" y="120" width="220" height="240" fill="#FFF4DC"/>
+<rect x="90" y="290" width="220" height="60" fill="#7A4A2E"/>
+<rect x="90" y="246" width="220" height="44" fill="#F7E7C6"/>
+<rect x="90" y="204" width="220" height="42" fill="#8B5536"/>
+<rect x="90" y="160" width="220" height="44" fill="#F7E7C6"/>
+<rect x="90" y="120" width="220" height="40" fill="#5A3322"/>
+<path d="M90 204 q20 8 40 0 t40 0 t40 0 t40 0 t40 0 t40 0" fill="none" stroke="#6E3F27" stroke-width="5"/>
+<path d="M90 290 q20 8 40 0 t40 0 t40 0 t40 0 t40 0 t40 0" fill="none" stroke="#5E3520" stroke-width="5"/>
+<rect x="120" y="128" width="14" height="200" rx="7" fill="#fff" opacity=".35"/>
+</g>
+<path d="M108 120 L292 120 L270 340 L130 340 Z" fill="none" stroke="#2A1712" stroke-width="6" stroke-linejoin="round"/>
+<path d="M120 120 Q200 70 280 120 Z" fill="#4A2A1C" stroke="#2A1712" stroke-width="6" stroke-linejoin="round"/>
+<g fill="#2A1712" opacity=".55"><circle cx="160" cy="108" r="3"/><circle cx="190" cy="98" r="2.5"/><circle cx="222" cy="104" r="3"/><circle cx="250" cy="112" r="2.5"/><circle cx="205" cy="112" r="2"/></g>
+<ellipse cx="214" cy="86" rx="15" ry="10" fill="#3B2216" stroke="#2A1712" stroke-width="5" transform="rotate(-18 214 86)"/>
+<path d="M205 90 q9 -6 18 -8" stroke="#C99A6B" stroke-width="3" fill="none" stroke-linecap="round"/>
+<rect x="96" y="112" width="208" height="14" rx="7" fill="#FFF4DC" stroke="#2A1712" stroke-width="6"/>
+</svg>
