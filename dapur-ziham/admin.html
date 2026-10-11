@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Kelola Menu | Dapur Ziham</title>
+<meta name="description" content="Halaman pengelola menu Dapur Ziham.">
+<meta name="theme-color" content="#2A1712">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%232A1712'/%3E%3Cpath d='M8 14h48v8c-4 6-8 6-12 0-4 6-8 6-12 0-4 6-8 6-12 0-4 6-8 6-12 0z' fill='%23D7362B'/%3E%3Ctext x='32' y='52' font-family='Arial Black,Arial' font-weight='900' font-size='24' text-anchor='middle' fill='%23F6C445'%3EDZ%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Plus+Jakarta+Sans:wght@400;600;700&family=Space+Mono:wght@700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/admin.css">
+</head>
+<body>
+<a class="skip" href="#main">Langsung ke isi</a>
+<header class="bar">
+  <div class="bar-in">
+    <a class="brand" href="index.html" title="Buka situs">
+      <svg viewBox="0 0 40 40" aria-hidden="true"><rect x="2" y="2" width="36" height="36" rx="10" fill="#F6C445"/><path d="M6 10h28v5c-2.4 3.6-4.6 3.6-7 0-2.4 3.6-4.6 3.6-7 0-2.4 3.6-4.6 3.6-7 0-2.4 3.6-4.6 3.6-7 0z" fill="#D7362B"/><path d="M12 31V21h6a5 5 0 0 1 0 10zM23 21h7l-7 10h7" fill="none" stroke="#2A1712" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span><b>Dapur Ziham</b><small>Kelola menu</small></span>
+    </a>
+    <p class="status" id="status" role="status"><i></i><span>Memuat…</span></p>
+    <div class="bar-actions">
+      <a class="btn btn-ghost" id="previewBtn" href="index.html?preview=1" target="_blank" rel="noopener">Pratinjau</a>
+      <button class="btn btn-accent" id="publishBtn" type="button">Terbitkan</button>
+    </div>
+  </div>
+  <nav class="tabs" role="tablist" aria-label="Bagian admin">
+    <button role="tab" id="tab-menu" aria-controls="panel-menu" aria-selected="true">Menu</button>
+    <button role="tab" id="tab-toko" aria-controls="panel-toko" aria-selected="false" tabindex="-1">Info toko</button>
+    <button role="tab" id="tab-terbit" aria-controls="panel-terbit" aria-selected="false" tabindex="-1">Koneksi terbit</button>
+  </nav>
+</header>
+
+<main id="main" tabindex="-1">
+  <div class="banner" id="draftBanner" hidden>
+    <p>Kamu sedang melanjutkan <b>draf yang belum terbit</b> di perangkat ini.</p>
+    <button class="btn btn-sm btn-ghost" id="discardDraft" type="button">Buang draf, muat versi terbit</button>
+  </div>
+
+  <!-- MENU -->
+  <section class="panel" id="panel-menu" role="tabpanel" aria-labelledby="tab-menu">
+    <div class="menu-layout">
+      <div class="list-col">
+        <div class="list-head">
+          <div>
+            <h1>Daftar menu</h1>
+            <p class="muted" id="countLine">0 menu</p>
+          </div>
+          <button class="btn btn-ink" id="addBtn" type="button"><span aria-hidden="true">+</span> Tambah menu baru</button>
+        </div>
+        <ol class="items" id="items"></ol>
+        <p class="empty" id="emptyList" hidden>Belum ada menu. Tekan <b>Tambah menu baru</b> untuk mulai.</p>
+      </div>
+
+      <aside class="editor-col" aria-labelledby="editorTitle">
+        <form class="editor" id="editor" novalidate hidden>
+          <div class="editor-head">
+            <h2 id="editorTitle">Menu baru</h2>
+            <button class="icon-btn" type="button" id="closeEditor" aria-label="Tutup editor">×</button>
+          </div>
+
+          <label class="field">Nama menu <em>wajib</em>
+            <input name="name" maxlength="60" placeholder="Misalnya: Risol Mayo" required>
+          </label>
+
+          <div class="two">
+            <label class="field">Kategori
+              <select name="category" id="catSelect"></select>
+            </label>
+            <label class="field">Harga <em>wajib</em>
+              <span class="prefix"><span>Rp</span><input name="price" type="number" inputmode="numeric" min="0" step="500" placeholder="5000" required></span>
+            </label>
+          </div>
+          <label class="field" id="newCatField" hidden>Nama kategori baru
+            <input name="newCategory" maxlength="30" placeholder="Misalnya: Gorengan">
+          </label>
+
+          <label class="field">Deskripsi singkat <span class="count" id="descCount">0/160</span>
+            <textarea name="desc" rows="3" maxlength="160" placeholder="Satu atau dua kalimat yang bikin orang lapar."></textarea>
+          </label>
+
+          <div class="field">
+            <span>Foto</span>
+            <div class="drop" id="drop" tabindex="0" role="button" aria-describedby="dropHint">
+              <img id="photoPreview" alt="" hidden>
+              <span class="drop-txt" id="dropHint">Ketuk untuk pilih foto, atau seret foto ke sini.<br><small>Foto otomatis dikecilkan supaya situs tetap cepat.</small></span>
+              <input type="file" id="photoInput" accept="image/*" hidden>
+            </div>
+            <button class="link-btn" type="button" id="removePhoto" hidden>Hapus foto</button>
+          </div>
+
+          <div class="two">
+            <label class="field">Label
+              <select name="badge">
+                <option value="">Tanpa label</option>
+                <option>Favorit</option>
+                <option>Baru</option>
+                <option>Terlaris</option>
+                <option>Promo</option>
+              </select>
+            </label>
+            <div class="field">
+              <span>Ketersediaan</span>
+              <label class="switch"><input type="checkbox" name="available" checked><i aria-hidden="true"></i><span class="sw-on">Tersedia</span><span class="sw-off">Habis hari ini</span></label>
+            </div>
+          </div>
+
+          <p class="form-err" id="formErr" role="alert" hidden></p>
+
+          <div class="editor-actions">
+            <button class="btn btn-accent" type="submit" id="saveItem">Simpan ke daftar</button>
+            <button class="btn btn-ghost" type="button" id="cancelEdit">Batal</button>
+          </div>
+
+          <div class="preview">
+            <p class="preview-label">Tampilan di situs</p>
+            <article class="pcard" id="pcard"></article>
+          </div>
+        </form>
+
+        <div class="editor-idle" id="editorIdle">
+          <svg viewBox="0 0 120 120" aria-hidden="true"><circle cx="60" cy="60" r="56" fill="#FFF4DC" stroke="#2A1712" stroke-width="4"/><path d="M38 66h44l-4 22H42z" fill="#F6C445" stroke="#2A1712" stroke-width="4" stroke-linejoin="round"/><path d="M60 30v22M49 41h22" stroke="#D7362B" stroke-width="6" stroke-linecap="round"/></svg>
+          <h2>Mau jual apa lagi?</h2>
+          <p>Tekan <b>Tambah menu baru</b>, isi nama, harga, dan fotonya. Lalu tekan <b>Terbitkan</b> supaya muncul di situs.</p>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- STORE INFO -->
+  <section class="panel" id="panel-toko" role="tabpanel" aria-labelledby="tab-toko" hidden>
+    <div class="narrow">
+      <h1>Info toko</h1>
+      <p class="muted">Dipakai di tombol pesan, tanya jawab, dan bagian bawah situs.</p>
+      <form class="card-form" id="storeForm" novalidate>
+        <label class="field">Nomor WhatsApp <em>wajib</em>
+          <input name="whatsapp" inputmode="tel" placeholder="0812xxxxxxx atau 62812xxxxxxx">
+          <small class="hint" id="waHint">Pesanan dari situs akan dikirim ke nomor ini.</small>
+        </label>
+        <label class="field">Alamat atau lokasi gerobak
+          <input name="address" maxlength="120" placeholder="Misalnya: Depan Indomaret Jl. Melati No. 5">
+        </label>
+        <label class="field">Jam buka
+          <input name="hours" maxlength="80" placeholder="Misalnya: Setiap hari, 15.00 sampai habis">
+        </label>
+        <label class="field">Instagram <span class="muted">(boleh kosong)</span>
+          <input name="instagram" maxlength="60" placeholder="@dapurziham">
+        </label>
+      </form>
+
+      <h2 class="h2">Kategori</h2>
+      <p class="muted">Kategori yang dipakai menu tidak bisa dihapus. Pindahkan menunya dulu.</p>
+      <ul class="cats" id="cats"></ul>
+      <form class="cat-add" id="catAdd">
+        <label class="sr" for="catNew">Kategori baru</label>
+        <input id="catNew" maxlength="30" placeholder="Kategori baru, misalnya: Gorengan">
+        <button class="btn btn-ink btn-sm" type="submit">Tambah</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- PUBLISH CONNECTION -->
+  <section class="panel" id="panel-terbit" role="tabpanel" aria-labelledby="tab-terbit" hidden>
+    <div class="narrow">
+      <h1>Koneksi terbit</h1>
+      <p class="muted">Situs ini tidak punya server. Tombol <b>Terbitkan</b> menyimpan menu langsung ke GitHub, tempat file situs disimpan. Situs akan menampilkan menu baru dalam satu sampai dua menit.</p>
+
+      <details class="howto">
+        <summary>Cara membuat kunci GitHub (sekali saja, 3 menit)</summary>
+        <ol>
+          <li>Buka <a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener">github.com/settings/personal-access-tokens/new</a> dan masuk ke akun GitHub kamu.</li>
+          <li>Isi nama bebas, misalnya <i>Admin Dapur Ziham</i>. Pilih masa berlaku, misalnya 1 tahun.</li>
+          <li>Di <b>Repository access</b>, pilih <b>Only select repositories</b>, lalu pilih repo situs ini.</li>
+          <li>Di <b>Permissions</b>, buka <b>Repository permissions</b>, cari <b>Contents</b>, ubah jadi <b>Read and write</b>.</li>
+          <li>Tekan <b>Generate token</b>, salin kodenya, lalu tempel di kolom <b>Kunci GitHub</b> di bawah.</li>
+        </ol>
+        <p>Kunci hanya disimpan di browser perangkat ini. Jangan bagikan ke siapa pun.</p>
+      </details>
+
+      <form class="card-form" id="ghForm" novalidate>
+        <div class="two">
+          <label class="field">Pemilik repo<input name="owner" placeholder="azziham" autocomplete="off"></label>
+          <label class="field">Nama repo<input name="repo" placeholder="WebsiteTesting" autocomplete="off"></label>
+        </div>
+        <div class="two">
+          <label class="field">Branch<input name="branch" placeholder="main" autocomplete="off"></label>
+          <label class="field">Folder situs<input name="folder" placeholder="dapur-ziham" autocomplete="off"><small class="hint">Kosongkan kalau situs ada di akar repo.</small></label>
+        </div>
+        <label class="field">Kunci GitHub
+          <span class="prefix reveal-wrap"><input name="token" type="password" autocomplete="off" spellcheck="false" placeholder="github_pat_..."><button class="link-btn" type="button" id="toggleToken">Lihat</button></span>
+        </label>
+        <div class="row">
+          <button class="btn btn-ink" type="button" id="testGh">Tes koneksi</button>
+          <button class="link-btn" type="button" id="forgetGh">Hapus kunci dari perangkat ini</button>
+        </div>
+        <p class="gh-result" id="ghResult" role="status"></p>
+      </form>
+
+      <h2 class="h2">Cadangan manual</h2>
+      <p class="muted">Tanpa GitHub, kamu tetap bisa mengunduh file menu lalu menaruhnya di folder <code>data/</code> situs saat upload ke hosting.</p>
+      <div class="row">
+        <button class="btn btn-ghost" type="button" id="exportBtn">Unduh menu.json</button>
+        <label class="btn btn-ghost">Impor menu.json<input type="file" id="importInput" accept="application/json,.json" hidden></label>
+      </div>
+    </div>
+  </section>
+</main>
+
+<dialog class="pub" id="pubDialog" aria-labelledby="pubTitle">
+  <div class="pub-in">
+    <h2 id="pubTitle">Menerbitkan menu…</h2>
+    <ol class="pub-log" id="pubLog"></ol>
+    <div class="row end"><button class="btn btn-ink" id="pubClose" type="button" disabled>Tutup</button></div>
+  </div>
+</dialog>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script src="assets/menu-store.js"></script>
+<script src="assets/admin.js"></script>
+</body>
+</html>
