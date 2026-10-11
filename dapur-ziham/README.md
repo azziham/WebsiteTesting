@@ -55,6 +55,6 @@ Sebelum tayang di domain sendiri, isi `og:url` dan `og:image` di `index.html`
 
 ## Yang perlu diganti sebelum tayang
 
-- Nomor WhatsApp, alamat gerobak, jam buka, dan Instagram: tab **Info toko** di admin.
+- Nomor WhatsApp, alamat dapur, jam buka, dan Instagram: tab **Info toko** di admin.
 - Harga menu (sekarang masih contoh): Rp 5.000, Rp 15.000, Rp 8.000.
 - Gambar menu masih ilustrasi. Ganti dengan foto asli lewat admin kapan saja.

@@ -10,7 +10,7 @@
     settings: {
       brand: 'Dapur Ziham',
       whatsapp: '6281234567890',
-      address: 'Atur alamat gerobak di halaman admin',
+      address: 'Atur alamat dapur di halaman admin',
       hours: 'Setiap hari, 15.00 sampai habis',
       instagram: ''
     },
